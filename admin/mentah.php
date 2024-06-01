@@ -18,7 +18,7 @@ include 'koneksiAdmin.php';
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Profil Admin | Awan Indonesia</title>
+    <title>Dashboard | Awan Indonesia</title>
 
     <meta name="description" content="" />
 
@@ -56,7 +56,7 @@ include 'koneksiAdmin.php';
     <script src="../assets/js/config.js"></script>
   </head>
 
-  <div>
+  <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -78,7 +78,7 @@ include 'koneksiAdmin.php';
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="index.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -113,13 +113,13 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Akun</span>
             </li>
-            <li class="menu-item active open">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Account Settings">Admin</div>
               </a>
-              <ul class="menu-sub ">
-                <li class="menu-item active">
+              <ul class="menu-sub">
+                <li class="menu-item">
                   <a href="profilAdmin.php" class="menu-link">
                     <div data-i18n="Account">Profil</div>
                   </a>
@@ -225,7 +225,7 @@ include 'koneksiAdmin.php';
                     <li>
                       <a class="dropdown-item" href="profilAdmin.php">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">Profil</span>
+                        <span class="align-middle">Profile</span>
                       </a>
                     </li>
                     <li>
@@ -277,90 +277,7 @@ include 'koneksiAdmin.php';
         <!-- / Logout Modal -->
 
           <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
-            <form action="admin_update.php" method="post" enctype="multipart/form-data"> 
-              <?php             
-                $data = mysqli_query($koneksi, "select * from admin where admin_id='$id_admin'");
-                while($d = mysqli_fetch_array($data)){
-              ?>    
-            <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Profil</h4>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card mb-4">
-                    <h5 class="card-header">Profil Detail</h5>
-                    <!-- Account -->
-                    
-                    <div class="card-body">
-                      <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <?php 
-                          if($profil['admin_foto'] == ""){ 
-                        ?>
-                        <img 
-                          src="../gambar/sistem/user.png" 
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100">
-                        <?php }else{ ?>
-                        <img 
-                          src="../gambar/user/<?php echo $profil['admin_foto'] ?>" 
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100">
-                        <?php } ?>
-
-                        <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload Foto Baru</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                              name="foto"
-                            />
-                          </label>
-                          <p class="text-muted mb-0">Abaikan Jika Tidak Ingin Ganti</p>
-                        </div>
-                      </div>
-                    </div>
-                    <hr class="my-0" />  
-                    <div class="card-body">
-                        <div class="row">
-                          <div class="mb-3">
-                            <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['admin_nama'] ?>" required="required" autofocus>
-                            <input type="hidden" class="form-control" name="id" value="<?php echo $d['admin_id'] ?>" required="required">
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" value="<?php echo $d['admin_username'] ?>" required="required">
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosong Jika tidak ingin di ganti">
-                          </div>
-                        </div>
-                        <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2" value="Simpan">Simpan</button>
-                          <button type="submit" class="btn btn-outline-secondary" href="admin.php">Cancel</button>
-                        </div>
-                      </form>
-                    </div>
-                  <?php
-                    }
-                  ?>
-                    <!-- /Account -->
-                  </div>
-                </div>
-              </div>
-            </div>
+          
             <!-- / Content -->
 
             <!-- Footer -->
