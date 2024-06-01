@@ -18,7 +18,7 @@ include 'koneksiAdmin.php';
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard | Awan Indonesia</title>
+    <title>Profil Admin | Awan Indonesia</title>
 
     <meta name="description" content="" />
 
@@ -232,7 +232,7 @@ include 'koneksiAdmin.php';
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -243,8 +243,38 @@ include 'koneksiAdmin.php';
               </ul>
             </div>
           </nav>
-
           <!-- / Navbar -->
+
+          <!-- Logout Modal -->
+          <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel1">Ingin Logout ?</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col mb-3">
+                    Tekan "Logout" dibawah jika kamu ingin keluar sesi.
+                  </div>
+                </div>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Tutup
+              </button>
+                <a class="btn btn-primary" href="logout.php">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / Logout Modal -->
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
