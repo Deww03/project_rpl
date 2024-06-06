@@ -18,7 +18,7 @@ include 'koneksiAdmin.php';
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Profil Admin | Awan Indonesia</title>
+    <title>Edit Barang | Awan Indonesia</title>
 
     <meta name="description" content="" />
 
@@ -89,14 +89,14 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Produk</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Barang</div>
               </a>
 
               <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a href="barang.php" class="menu-link">
                     <div data-i18n="Without menu">Data Barang</div>
                   </a>
@@ -113,7 +113,7 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Akun</span>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="admin.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Account Settings">Admin</div>
@@ -258,81 +258,102 @@ include 'koneksiAdmin.php';
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-            <form action="admin_update.php" method="post" enctype="multipart/form-data"> 
-              <?php             
-                $id = $_GET['id'];
-                $data = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
-                while($d = mysqli_fetch_array($data)){
-              ?>    
+            <form action="kategori_update.php" method="post" enctype="multipart/form-data"> 
+                <?php 
+                    $id = $_GET['id'];
+                    $data = mysqli_query($koneksi,"select * from produk where produk_id='$id'");
+                    while($d = mysqli_fetch_array($data)){
+                ?>
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Profi Admin</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang /</span> Edit Barang</h4>
 
               <div class="row">
                 <div class="col-md-12">
                   <div class="card mb-4">
-                    <h5 class="card-header">Profil Detail</h5>
+                  <h5 class="card-header">Detail Barang</h5>
                     <!-- Account -->
-                    
-                    <div class="card-body">
-                      <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <?php 
-                          $id = $_GET['id'];
-                          $foto = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
-                          $foto = mysqli_fetch_assoc($foto);
-                          if($foto['admin_foto'] == ""){
-                        ?>
-                        <img 
-                          src="../gambar/sistem/user.png" 
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100">
-                        <?php }else{ ?>
-                        <img 
-                          src="../gambar/user/<?php echo $foto['admin_foto'] ?>" 
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100">
-                        <?php } ?>
-
-                        <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload Foto Baru</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                              name="foto"
-                            />
-                          </label>
-                          <p class="text-muted mb-0">Abaikan Jika Tidak Ingin Ganti</p>
-                        </div>
-                      </div>
-                    </div>
                     <hr class="my-0" />  
                     <div class="card-body">
                         <div class="row">
                           <div class="mb-3">
-                            <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['admin_nama'] ?>" required="required" autofocus>
-                            <input type="hidden" class="form-control" name="id" value="<?php echo $d['admin_id'] ?>" required="required">
+                            <label>Nama Barang</label>
+                            <input type="text" class="form-control" name="nama" value="<?php echo $d['produk_nama'] ?>" required="required" autofocus>
+                            <input type="hidden" class="form-control" name="id" value="<?php echo $d['produk_id'] ?>" required="required">
                           </div>
                           <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" value="<?php echo $d['admin_username'] ?>" required="required">
+                            <label>Kategori Barang</label>
+                            <select name="kategori" required="required" class="form-select">
+                            <option value="">Pilih Kategori Produk</option>
+                                <?php 
+                                include '../koneksi.php';
+                                $kategori = mysqli_query($koneksi,"SELECT * FROM kategori");
+                                while($k = mysqli_fetch_array($kategori)){
+                                ?>
+                                <option <?php if($k['kategori_id'] == $d['produk_kategori']){echo "selected='selected'";} ?> value="<?php echo $k['kategori_id']; ?>"><?php echo $k['kategori_nama']; ?></option>
+                                <?php 
+                                }
+                                ?>
+                             </select>
                           </div>
                           <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosong Jika tidak ingin di ganti">
+                            <label>Harga</label>
+                            <input type="number" class="form-control" name="harga" value="<?php echo $d['produk_harga']; ?>" required="required">
+                          </div>
+                          <div class="mb-3">
+                            <label>Keterangan</label>
+                            <textarea class="form-control" rows="5" name="keterangan" value="<?php echo $d['produk_keterangan']; ?>"></textarea>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label>Berat Barang (Gram)</label>
+                            <input type="number" class="form-control" name="berat" value="<?php echo $d['produk_berat']; ?>" required="required">
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label>Jumlah Stock</label>
+                            <input type="number" class="form-control" name="jumlah" value="<?php echo $d['produk_jumlah']; ?>" required="required">
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label>Foto 1 (Utama)</label>
+                            <input class="form-control" type="file" id="formFile" name="foto1"/>
+                            
+                            <?php if($d['produk_foto1'] == ""){ ?>
+                                <img src="../gambar/sistem/produk.png" style="width: 120px;height: auto">
+                            <?php }else{ ?>
+                                <img src="../gambar/produk/<?php echo $d['produk_foto1'] ?>" style="width: 120px;height: auto">
+                            <?php } ?>
+
+                            <br/>
+                            <small class="text-muted">Kosongkan Jika Tidak Ingin Mengubah Foto</small>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label>Foto 2</label>
+                            <input class="form-control" type="file" id="formFile" name="foto2"/>
+                            
+                            <?php if($d['produk_foto2'] == ""){ ?>
+                                <img src="../gambar/sistem/produk.png" style="width: 120px;height: auto">
+                            <?php }else{ ?>
+                                <img src="../gambar/produk/<?php echo $d['produk_foto2'] ?>" style="width: 120px;height: auto">
+                            <?php } ?>
+
+                            <br/>
+                            <small class="text-muted">Kosongkan Jika Tidak Ingin Mengubah Foto</small>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label>Foto 3</label>
+                            <input class="form-control" type="file" id="formFile" name="foto3"/>
+                            
+                            <?php if($d['produk_foto3'] == ""){ ?>
+                                <img src="../gambar/sistem/produk.png" style="width: 120px;height: auto">
+                            <?php }else{ ?>
+                                <img src="../gambar/produk/<?php echo $d['produk_foto3'] ?>" style="width: 120px;height: auto">
+                            <?php } ?>
+
+                            <br/>
+                            <small class="text-muted">Kosongkan Jika Tidak Ingin Mengubah Foto</small>
                           </div>
                         </div>
                         <div class="mt-2">
                           <button type="submit" class="btn btn-primary me-2" value="Simpan">Simpan</button>
-                          <button type="submit" class="btn btn-outline-secondary" href="admin.php">Cancel</button>
+                          <button type="submit" class="btn btn-outline-secondary" href="barang.php">Cancel</button>
                         </div>
                       </form>
                     </div>

@@ -53,4 +53,4 @@ if($filename3 != ""){
 	}
 }
 
-header("location:produk.php");
+header("location:barang.php");

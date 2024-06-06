@@ -25,4 +25,4 @@ while($d=mysqli_fetch_array($data)){
 
 mysqli_query($koneksi, "delete from transaksi where transaksi_produk='$id'");
 
-header("location:produk.php");
+header("location:barang.php");

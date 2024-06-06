@@ -114,22 +114,10 @@ include 'koneksiAdmin.php';
               <span class="menu-header-text">Akun</span>
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <a href="admin.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Account Settings">Admin</div>
               </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="profilAdmin.php" class="menu-link">
-                    <div data-i18n="Account">Profil</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="admin.php" class="menu-link">
-                    <div data-i18n="Notifications">Data Admin</div>
-                  </a>
-                </li>
-              </ul>
             </li>
           
             <li class="menu-item">
@@ -223,15 +211,6 @@ include 'koneksiAdmin.php';
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="profilAdmin.php">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
                       <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
@@ -287,7 +266,7 @@ include 'koneksiAdmin.php';
                     <div class="d-flex align-items-end row">
                       <div class="col-sm-7">
                         <div class="card-body">
-                          <h5 class="card-title text-primary">Selamat Datang Adam! 🎉</h5>
+                          <h5 class="card-title text-primary">Selamat Datang <?php echo $_SESSION['username']; ?>! 🎉</h5>
                           <p class="mb-4">
                           Jika kamu berkeinginan untuk mencapai keunggulan dalam hal-hal besar, kamu perlu mengembangkan kebiasaan dalam hal-hal kecil.
                           </p>

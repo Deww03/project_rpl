@@ -18,7 +18,7 @@ include 'koneksiAdmin.php';
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Profil Admin | Awan Indonesia</title>
+    <title>Data Barang | Awan Indonesia</title>
 
     <meta name="description" content="" />
 
@@ -56,7 +56,7 @@ include 'koneksiAdmin.php';
     <script src="../assets/js/config.js"></script>
   </head>
 
-  <div>
+  <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -89,14 +89,14 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Produk</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Barang</div>
               </a>
 
               <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a href="barang.php" class="menu-link">
                     <div data-i18n="Without menu">Data Barang</div>
                   </a>
@@ -113,7 +113,7 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Akun</span>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="admin.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Account Settings">Admin</div>
@@ -258,93 +258,161 @@ include 'koneksiAdmin.php';
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-            <form action="admin_update.php" method="post" enctype="multipart/form-data"> 
-              <?php             
-                $id = $_GET['id'];
-                $data = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
-                while($d = mysqli_fetch_array($data)){
-              ?>    
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Profi Admin</h4>
-
-              <div class="row">
-                <div class="col-md-12">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang /</span> Data Barang</h4>
+            <!-- Hoverable Table rows -->
+            <div class="row">
+                <div class="col-12">
                   <div class="card mb-4">
-                    <h5 class="card-header">Profil Detail</h5>
-                    <!-- Account -->
-                    
-                    <div class="card-body">
-                      <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <?php 
-                          $id = $_GET['id'];
-                          $foto = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
-                          $foto = mysqli_fetch_assoc($foto);
-                          if($foto['admin_foto'] == ""){
-                        ?>
-                        <img 
-                          src="../gambar/sistem/user.png" 
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100">
-                        <?php }else{ ?>
-                        <img 
-                          src="../gambar/user/<?php echo $foto['admin_foto'] ?>" 
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100">
-                        <?php } ?>
-
-                        <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload Foto Baru</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                              name="foto"
-                            />
-                          </label>
-                          <p class="text-muted mb-0">Abaikan Jika Tidak Ingin Ganti</p>
+                    <h5 class="card-header">Daftar Barang</h5>
+                      <div class="card-body">
+                        <div class="demo-inline-spacing">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahBarangModal">Tambah Barang</button>
                         </div>
                       </div>
-                    </div>
-                    <hr class="my-0" />  
-                    <div class="card-body">
-                        <div class="row">
-                          <div class="mb-3">
-                            <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['admin_nama'] ?>" required="required" autofocus>
-                            <input type="hidden" class="form-control" name="id" value="<?php echo $d['admin_id'] ?>" required="required">
+                  <br>
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>Kategori</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>Foto</th>
+                        <th>Menu</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <?php 
+                            include '../koneksi.php';
+                            $no=1;
+                            $data = mysqli_query($koneksi,"SELECT * FROM produk,kategori where kategori_id=produk_kategori order by produk_id desc");
+                            while($d = mysqli_fetch_array($data)){
+                        ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['produk_nama']; ?></td>
+                      <td><?php echo $d['kategori_nama']; ?></td>
+                      <td><?php echo "Rp. ".number_format($d['produk_harga']).",-"; ?></td>
+                      <td><?php echo number_format($d['produk_jumlah']); ?></td>
+                      <td>
+                          <?php if($d['produk_foto1'] == ""){ ?>
+                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
+                          <?php }else{ ?>
+                            <img src="../gambar/produk/<?php echo $d['produk_foto1'] ?>" style="width: 80px;height: auto">
+                          <?php } ?>
+
+                          <?php if($d['produk_foto2'] == ""){ ?>
+                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
+                          <?php }else{ ?>
+                            <img src="../gambar/produk/<?php echo $d['produk_foto2'] ?>" style="width: 80px;height: auto">
+                          <?php } ?>
+
+                          <?php if($d['produk_foto3'] == ""){ ?>
+                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
+                          <?php }else{ ?>
+                            <img src="../gambar/produk/<?php echo $d['produk_foto3'] ?>" style="width: 80px;height: auto">
+                          <?php } ?>
+                        </td>
+                        <td>
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="profilBarang.php?id=<?php echo $d['produk_id'] ?>"
+                                ><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                              <a class="dropdown-item" href="produk_hapus.php?id=<?php echo $d['produk_id'] ?>"
+                                ><i class="bx bx-trash me-2"></i> Hapus</a>
+                            </div>
                           </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" value="<?php echo $d['admin_username'] ?>" required="required">
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosong Jika tidak ingin di ganti">
-                          </div>
-                        </div>
-                        <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2" value="Simpan">Simpan</button>
-                          <button type="submit" class="btn btn-outline-secondary" href="admin.php">Cancel</button>
-                        </div>
-                      </form>
-                    </div>
-                  <?php
-                    }
-                  ?>
-                    <!-- /Account -->
+                        </td>
+                      </tr>
+                      <?php 
+                        }
+                      ?>    
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--/ Hoverable Table rows -->
+            </div>
+          </div>
+        </div>
+      </div>
+            <!-- / Content -->
+
+            <!-- Modal Tambah Barang -->
+            <div class="modal fade" id="tambahBarangModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Tambah Barang</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col mb-3">
+                    <form action="produk_act.php" method="post" enctype="multipart/form-data">
+                        <label>Nama Barang</label>
+                        <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama ..">
+                        <br>
+                        <label>Kategori Barang</label>
+                        <select name="kategori" required="required" class="form-select">
+                            <option value="">Pilih Kategori</option>
+                                <?php 
+                                include '../koneksi.php';
+                                $data = mysqli_query($koneksi,"SELECT * FROM kategori");
+                                while($d = mysqli_fetch_array($data)){
+                                    ?>
+                            <option value="<?php echo $d['kategori_id']; ?>"><?php echo $d['kategori_nama']; ?></option>
+                                <?php 
+                                    }
+                                ?>
+                        </select>
+                        <br>
+                        <label>Harga</label>
+                        <input type="number" class="form-control" name="harga" required="required" placeholder="Masukkan Harga ..">
+                        <br>
+                        <label>Keterangan</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" required="required" name="keterangan"></textarea>
+                        <br>
+                        <label>Berat (Gram)</label>
+                        <input type="number" class="form-control" name="berat" required="required" placeholder="Masukkan Berat ..">
+                        <br>
+                        <label>Jumlah Stock</label>
+                        <input type="number" class="form-control" name="jumlah" required="required" placeholder="Masukkan Jumlah ..">
+                        <br>
+                        <label>Foto 1 (Utama)</label>
+                        <input class="form-control" type="file" id="formFile" name="foto1"/>
+                        <br>
+                        <label>Foto 2</label>
+                        <input class="form-control" type="file" id="formFile" name="foto2"/>
+                        <br>
+                        <label>Foto 3</label>
+                        <input class="form-control" type="file" id="formFile" name="foto3"/>
+                        <br>
                   </div>
                 </div>
               </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Tutup
+              </button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+              </div>
+              </form>
             </div>
-            <!-- / Content -->
+          </div>
+        </div>
+
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">

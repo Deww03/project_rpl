@@ -18,7 +18,7 @@ include 'koneksiAdmin.php';
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard | Awan Indonesia</title>
+    <title>Data Admin | Awan Indonesia</title>
 
     <meta name="description" content="" />
 
@@ -113,23 +113,11 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Akun</span>
             </li>
-            <li class="menu-item active open">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <li class="menu-item active">
+              <a href="admin.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Account Settings">Admin</div>
               </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="profilAdmin.php" class="menu-link">
-                    <div data-i18n="Account">Profil</div>
-                  </a>
-                </li>
-                <li class="menu-item active">
-                  <a href="admin.php" class="menu-link">
-                    <div data-i18n="Notifications">Data Admin</div>
-                  </a>
-                </li>
-              </ul>
             </li>
           
             <li class="menu-item">
@@ -223,15 +211,6 @@ include 'koneksiAdmin.php';
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="profilAdmin.php">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
                       <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
@@ -286,9 +265,12 @@ include 'koneksiAdmin.php';
                 <div class="col-12">
                   <div class="card mb-4">
                     <h5 class="card-header">Daftar Admin</h5>
-                  <div class="demo-inline-spacing">
-                    <button type="button" class="btn btn-primary">Primary</button>
-                  </div>
+                      <div class="card-body">
+                        <div class="demo-inline-spacing">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahAdminModal">Tambah Admin</button>
+                        </div>
+                      </div>
+                  <br>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover">
                     <thead>
@@ -324,9 +306,10 @@ include 'koneksiAdmin.php';
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profilAdmin.php"
-                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                              >
+                              <a class="dropdown-item" href="profilAdmin.php?id=<?php echo $d['admin_id'] ?>"
+                                ><i class="bx bx-edit-alt me-1"></i> Edit</a><?php if($d['admin_id'] != 1){ ?>
+                              <a class="dropdown-item" href="admin_hapus.php?id=<?php echo $d['admin_id'] ?>"
+                                ><i class="bx bx-trash me-2"></i> Delete</a><?php } ?>
                             </div>
                           </div>
                         </td>
@@ -344,6 +327,50 @@ include 'koneksiAdmin.php';
         </div>
       </div>
             <!-- / Content -->
+
+            <!-- Modal Tambah Admin -->
+            <div class="modal fade" id="tambahAdminModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Tambah Admin</h5>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    ></button>
+                </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col mb-3">
+                    <form action="admin_act.php" method="post" enctype="multipart/form-data">
+                        <label>Nama</label>
+                        <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama ..">
+                        <br>
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" required="required" placeholder="Masukkan Username ..">
+                        <br>
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" required="required" min="5" placeholder="Masukkan Password ..">
+                        <br>
+                        <label>Foto</label>
+                        <input class="form-control" type="file" id="formFile" name="foto"/>
+                        <br>
+                  </div>
+                </div>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                Tutup
+              </button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
