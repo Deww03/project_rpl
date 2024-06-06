@@ -258,7 +258,7 @@ include 'koneksiAdmin.php';
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-            <form action="kategori_update.php" method="post" enctype="multipart/form-data"> 
+            <form action="produk_update.php" method="post" enctype="multipart/form-data"> 
                 <?php 
                     $id = $_GET['id'];
                     $data = mysqli_query($koneksi,"select * from produk where produk_id='$id'");
