@@ -291,12 +291,12 @@ include 'koneksiAdmin.php';
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['kategori_nama']; ?></td>
                         <td>
+                        <?php if($d['kategori_id'] != 1){ ?> 
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                            <?php if($d['kategori_id'] != 1){ ?> 
                               <a class="dropdown-item" href="ProfilKategori.php?id=<?php echo $d['kategori_id'] ?>"
                                 ><i class="bx bx-edit-alt me-1"></i> Edit</a>
                               <a class="dropdown-item" href="kategori_hapus.php?id=<?php echo $d['kategori_id'] ?>"
