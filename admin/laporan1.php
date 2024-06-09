@@ -18,7 +18,7 @@ include 'koneksiAdmin.php';
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Data Barang | Awan Indonesia</title>
+    <title>Laporan Penjualan | Awan Indonesia</title>
 
     <meta name="description" content="" />
 
@@ -89,14 +89,14 @@ include 'koneksiAdmin.php';
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Produk</span>
             </li>
-            <li class="menu-item active open">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Barang</div>
               </a>
 
               <ul class="menu-sub">
-                <li class="menu-item active">
+                <li class="menu-item">
                   <a href="barang.php" class="menu-link">
                     <div data-i18n="Without menu">Data Barang</div>
                   </a>
@@ -139,7 +139,7 @@ include 'koneksiAdmin.php';
               </a>
             </li>
 
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="laporan.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Basic">Laporan Penjualan</div>
@@ -259,15 +259,32 @@ include 'koneksiAdmin.php';
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang /</span> Data Barang</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Penjualan /</span> Laporan Penjualan</h4>
             <!-- Hoverable Table rows -->
             <div class="row">
                 <div class="col-12">
                   <div class="card mb-4">
-                    <h5 class="card-header">Daftar Barang</h5>
+                    <h5 class="card-header">Filter Laporan</h5>
+                    <div class="card-body">
+                    <div class="mb-3 row">
+                        <label for="html5-date-input" class="col-md-2 col-form-label">Date</label>
+                        <div class="col-md-10">
+                          <input class="form-control" type="date" value="2021-06-18" id="html5-date-input" />
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                <!--/ Hoverable Table rows -->
+                </div>
+            </div>
+
+          <div class="row">
+                <div class="col-12">
+                  <div class="card mb-4">
+                    <h5 class="card-header">Laporan Penjualan</h5>
                       <div class="card-body">
                         <div class="demo-inline-spacing">
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahBarangModal">Tambah Barang</button>
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahCustomerModal">Tambah Customer</button>
                         </div>
                       </div>
                   <br>
@@ -276,56 +293,36 @@ include 'koneksiAdmin.php';
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Nama Produk</th>
-                        <th>Kategori</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Foto</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Hp</th>
+                        <th>Alamat</th>
                         <th>Menu</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <?php 
-                            include '../koneksi.php';
-                            $no=1;
-                            $data = mysqli_query($koneksi,"SELECT * FROM produk,kategori where kategori_id=produk_kategori order by produk_id desc");
-                            while($d = mysqli_fetch_array($data)){
-                        ?>
+                    <?php 
+                  include '../koneksi.php';
+                  $no=1;
+                  $data = mysqli_query($koneksi,"SELECT * FROM customer");
+                  while($d = mysqli_fetch_array($data)){
+                    ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['produk_nama']; ?></td>
-                      <td><?php echo $d['kategori_nama']; ?></td>
-                      <td><?php echo "Rp. ".number_format($d['produk_harga']).",-"; ?></td>
-                      <td><?php echo number_format($d['produk_jumlah']); ?></td>
-                      <td>
-                          <?php if($d['produk_foto1'] == ""){ ?>
-                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
-                          <?php }else{ ?>
-                            <img src="../gambar/produk/<?php echo $d['produk_foto1'] ?>" style="width: 80px;height: auto">
-                          <?php } ?>
-
-                          <?php if($d['produk_foto2'] == ""){ ?>
-                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
-                          <?php }else{ ?>
-                            <img src="../gambar/produk/<?php echo $d['produk_foto2'] ?>" style="width: 80px;height: auto">
-                          <?php } ?>
-
-                          <?php if($d['produk_foto3'] == ""){ ?>
-                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
-                          <?php }else{ ?>
-                            <img src="../gambar/produk/<?php echo $d['produk_foto3'] ?>" style="width: 80px;height: auto">
-                          <?php } ?>
-                        </td>
+                      <td><?php echo $d['customer_nama']; ?></td>
+                      <td><?php echo $d['customer_email']; ?></td>
+                      <td><?php echo $d['customer_hp']; ?></td>
+                      <td><?php echo $d['customer_alamat']; ?></td>
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profilBarang.php?id=<?php echo $d['produk_id'] ?>"
+                              <a class="dropdown-item" href="profilCustomer.php?id=<?php echo $d['customer_id'] ?>"
                                 ><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                              <a class="dropdown-item" href="produk_hapus.php?id=<?php echo $d['produk_id'] ?>"
-                                ><i class="bx bx-trash me-2"></i> Hapus</a>
+                              <a class="dropdown-item" href="customer_hapus.php?id=<?php echo $d['customer_id'] ?>"
+                                ><i class="bx bx-trash me-2"></i> Delete</a>
                             </div>
                           </div>
                         </td>
@@ -344,12 +341,12 @@ include 'koneksiAdmin.php';
       </div>
             <!-- / Content -->
 
-            <!-- Modal Tambah Barang -->
-            <div class="modal fade" id="tambahBarangModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <!-- Modal Tambah Admin -->
+            <div class="modal fade" id="tambahCustomerModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Tambah Barang</h5>
+                  <h5 class="modal-title">Tambah Customer</h5>
                     <button
                     type="button"
                     class="btn-close"
@@ -358,63 +355,27 @@ include 'koneksiAdmin.php';
                     ></button>
                 </div>
               <div class="modal-body">
-                <form action="produk_act.php" method="post" enctype="multipart/form-data">
-                  <div class="row">
-                    <div class="col mb-3">
-                        <label>Nama Barang</label>
+                <div class="row">
+                  <div class="col mb-3">
+                    <form action="customer_act.php" method="post" enctype="multipart/form-data">
+                        <label>Nama</label>
                         <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama ..">
-                    </div>
+                        <br>
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email" required="required" placeholder="Masukkan Email ..">
+                        <br>
+                        <label>Hp</label>
+                        <input type="text" class="form-control" name="hp" required="required" placeholder="Masukkan Hp ..">
+                        <br>
+                        <label>Alamat</label>
+                        <input type="text" class="form-control" name="alamat" required="required" placeholder="Masukkan Alamat ..">
+                        <br>
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" required="required" placeholder="Masukkan Password ..">
+                        <br>
                   </div>
-                    <div class="row g-2">
-                      <div class="col mb-0">
-                        <label>Kategori Barang</label>
-                        <select name="kategori" required="required" class="form-select">
-                            <option value="">Pilih Kategori</option>
-                                <?php 
-                                include '../koneksi.php';
-                                $data = mysqli_query($koneksi,"SELECT * FROM kategori");
-                                while($d = mysqli_fetch_array($data)){
-                                    ?>
-                            <option value="<?php echo $d['kategori_id']; ?>"><?php echo $d['kategori_nama']; ?></option>
-                                <?php 
-                                    }
-                                ?>
-                        </select>
-                      </div>
-                      <div class="col mb-0">
-                        <label>Harga</label>
-                        <input type="number" class="form-control" name="harga" required="required" placeholder="Masukkan Harga ..">
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label>Keterangan</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" required="required" name="keterangan"></textarea>
-                      </div>
-                    </div>
-                    <div class="row g-2">
-                      <div class="col mb-0">
-                        <label>Berat (Gram)</label>
-                        <input type="number" class="form-control" name="berat" required="required" placeholder="Masukkan Berat ..">
-                      </div>
-                      <div class="col mb-0">
-                        <label>Jumlah Stock</label>
-                        <input type="number" class="form-control" name="jumlah" required="required" placeholder="Masukkan Jumlah ..">
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label>Foto 1 (Utama)</label>
-                          <input class="form-control" type="file" id="formFile" name="foto1"/>
-                        <label>Foto 2</label>
-                          <input class="form-control" type="file" id="formFile" name="foto2"/>
-                        <label>Foto 3</label>
-                          <input class="form-control" type="file" id="formFile" name="foto3"/>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+              </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                 Tutup

@@ -368,7 +368,7 @@ include 'koneksiAdmin.php';
                 <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
                     <div class="card">
                         <h5 class="card-header">Detail User</h5>
-                        <div class="table-responsive text-nowrap">
+                        <div class="text-nowrap">
                         <table class="table">
                         <tr>
                             <th>Nama</th>

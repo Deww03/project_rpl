@@ -277,7 +277,7 @@ include 'koneksiAdmin.php';
                         <div class="row">
                           <div class="mb-3">
                             <label>Nama Barang</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['produk_nama'] ?>" required="required" autofocus>
+                            <input type="text" class="form-control" name="nama" value="<?php echo $d['produk_nama'] ?>" required="required" placeholder="Masukan Nama .." autofocus>
                             <input type="hidden" class="form-control" name="id" value="<?php echo $d['produk_id'] ?>" required="required">
                           </div>
                           <div class="mb-3 col-md-6">
@@ -297,19 +297,19 @@ include 'koneksiAdmin.php';
                           </div>
                           <div class="mb-3 col-md-6">
                             <label>Harga</label>
-                            <input type="number" class="form-control" name="harga" value="<?php echo $d['produk_harga']; ?>" required="required">
+                            <input type="number" class="form-control" name="harga" value="<?php echo $d['produk_harga']; ?>" required="required" placeholder="Masukan Harga ..">
                           </div>
                           <div class="mb-3">
                             <label>Keterangan</label>
-                            <textarea class="form-control" rows="5" name="keterangan" value="<?php echo $d['produk_keterangan']; ?>"></textarea>
+                            <textarea class="form-control" rows="5" name="keterangan" value="<?php echo $d['produk_keterangan']; ?>" placeholder="Masukan Keterangan .."></textarea>
                           </div>
                           <div class="mb-3 col-md-6">
                             <label>Berat Barang (Gram)</label>
-                            <input type="number" class="form-control" name="berat" value="<?php echo $d['produk_berat']; ?>" required="required">
+                            <input type="number" class="form-control" name="berat" value="<?php echo $d['produk_berat']; ?>" required="required" placeholder="Masukan Berat ..">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label>Jumlah Stock</label>
-                            <input type="number" class="form-control" name="jumlah" value="<?php echo $d['produk_jumlah']; ?>" required="required">
+                            <input type="number" class="form-control" name="jumlah" value="<?php echo $d['produk_jumlah']; ?>" required="required" placeholder="Masukan Jumlah ..">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label>Foto 1 (Utama)</label>

@@ -277,24 +277,24 @@ include 'koneksiAdmin.php';
                         <div class="row">
                           <div class="mb-3">
                             <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['customer_nama'] ?>" required="required" autofocus>
+                            <input type="text" class="form-control" name="nama" value="<?php echo $d['customer_nama'] ?>" required="required" placeholder="Masukan Nama .." autofocus>
                             <input type="hidden" class="form-control" name="id" value="<?php echo $d['customer_id'] ?>" required="required">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Email</label>
-                            <input type="text" class="form-control" name="email" value="<?php echo $d['customer_email'] ?>" required="required">
+                            <input type="text" class="form-control" name="email" value="<?php echo $d['customer_email'] ?>" required="required" placeholder="Masukan Email ..">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Hp</label>
-                            <input type="text" class="form-control" name="hp" value="<?php echo $d['customer_hp'] ?>" required="required">
+                            <input type="text" class="form-control" name="hp" value="<?php echo $d['customer_hp'] ?>" required="required" placeholder="Masukan No Hp ..">
                           </div>
                           <div class="mb-3">
                             <label for="lastName" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" name="alamat" value="<?php echo $d['customer_alamat'] ?>" required="required">
+                            <input type="text" class="form-control" name="alamat" value="<?php echo $d['customer_alamat'] ?>" required="required" placeholder="Masukan Alamat ..">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosong Jika tidak ingin di ganti">
+                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosongkan Jika tidak ingin di ganti">
                           </div>
                         </div>
                         <div class="mt-2">

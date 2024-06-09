@@ -277,7 +277,7 @@ include 'koneksiAdmin.php';
                         <div class="row">
                           <div class="mb-3">
                             <label for="firstName" class="form-label">Nama</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['kategori_nama'] ?>" required="required" autofocus>
+                            <input type="text" class="form-control" name="nama" value="<?php echo $d['kategori_nama'] ?>" required="required" placeholder="Masukan Nama .." autofocus>
                             <input type="hidden" class="form-control" name="id" value="<?php echo $d['kategori_id'] ?>" required="required">
                           </div>
                         </div>

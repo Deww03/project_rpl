@@ -319,7 +319,7 @@ include 'koneksiAdmin.php';
       </div>
             <!-- / Content -->
 
-            <!-- Modal Tambah Admin -->
+            <!-- Modal Tambah Kategori -->
             <div class="modal fade" id="tambahKategoriModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -338,7 +338,6 @@ include 'koneksiAdmin.php';
                     <form action="kategori_act.php" method="post" enctype="multipart/form-data">
                         <label>Nama</label>
                         <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama ..">
-                        <br>
                   </div>
                 </div>
               </div>

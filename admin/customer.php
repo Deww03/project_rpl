@@ -324,7 +324,7 @@ include 'koneksiAdmin.php';
       </div>
             <!-- / Content -->
 
-            <!-- Modal Tambah Admin -->
+            <!-- Modal Tambah Customer -->
             <div class="modal fade" id="tambahCustomerModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">

@@ -318,16 +318,16 @@ include 'koneksiAdmin.php';
                         <div class="row">
                           <div class="mb-3">
                             <label for="firstName" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama" value="<?php echo $d['admin_nama'] ?>" required="required" autofocus>
+                            <input type="text" class="form-control" name="nama" value="<?php echo $d['admin_nama'] ?>" required="required" placeholder="Masukan Nama .." autofocus>
                             <input type="hidden" class="form-control" name="id" value="<?php echo $d['admin_id'] ?>" required="required">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" value="<?php echo $d['admin_username'] ?>" required="required">
+                            <input type="text" class="form-control" name="username" value="<?php echo $d['admin_username'] ?>" required="required" placeholder="Masukan Username ..">
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosong Jika tidak ingin di ganti">
+                            <input type="password" class="form-control" name="password" min="5" placeholder="Kosongkan Jika tidak ingin di ganti">
                           </div>
                         </div>
                         <div class="mt-2">
