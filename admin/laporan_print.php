@@ -59,7 +59,7 @@
           <th width="1%">NO</th>
           <th>INVOICE</th>
           <th>TANGGAL MASUK</th>
-          <th>NAMA SUPLIER</th>
+          <th>NAMA CUSTOMER</th>
           <th>JUMLAH</th>
           <th>STATUS</th>
         </tr>

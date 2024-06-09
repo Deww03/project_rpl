@@ -311,7 +311,7 @@ include 'koneksiAdmin.php';
                       <td>
                         <form action="transaksi_status.php" method="post">
                           <input type="hidden" value="<?php echo $i['invoice_id'] ?>" name="invoice">
-                          <select name="status" id="" class="form-control" onchange="form.submit()">
+                          <select name="status" id="" class="form-select" onchange="form.submit()">
                             <option <?php if($i['invoice_status'] == "0"){echo "selected='selected'";} ?> value="0">Menunggu Pembayaran</option>
                             <option <?php if($i['invoice_status'] == "1"){echo "selected='selected'";} ?> value="1">Menunggu Konfirmasi</option>
                             <option <?php if($i['invoice_status'] == "2"){echo "selected='selected'";} ?> value="2">Ditolak</option>
