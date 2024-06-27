@@ -1,12 +1,12 @@
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      Toko Online Penjualan Sepatu
-    </div>
-    <strong>Copyright &copy; <?php echo date('Y') ?></strong>
-  </footer>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+  <div class="pull-right hidden-xs">
+    Toko Online Penjualan Sepatu
+  </div>
+  <strong>Copyright &copy; <?php echo date('Y') ?></strong>
+</footer>
 
-  
+
 </div>
 
 
@@ -53,24 +53,24 @@
 <script src="../assets/bower_components/ckeditor/ckeditor.js"></script>
 
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
 
-   // $(".edit").hide();
+    // $(".edit").hide();
 
-   $('#table-datatable').DataTable({
-    'paging'      : true,
-    'lengthChange': false,
-    'searching'   : true,
-    'ordering'    : false,
-    'info'        : true,
-    'autoWidth'   : true,
-    "pageLength": 50
+    $('#table-datatable').DataTable({
+      'paging': true,
+      'lengthChange': false,
+      'searching': true,
+      'ordering': false,
+      'info': true,
+      'autoWidth': true,
+      "pageLength": 50
+    });
+
+
+
   });
 
-
-
- });
-  
   $('#datepicker').datepicker({
     autoclose: true,
     format: 'dd/mm/yyyy',
@@ -85,22 +85,23 @@
   $(function () {
 
     CKEDITOR.replace('editor1')
-    
+
   });
 
 
-  $(document).ready(function(){
-    $("#pesan_pilih_tujuan").on("change",function(){
+  $(document).ready(function () {
+    $("#pesan_pilih_tujuan").on("change", function () {
       var pilih = $(this).val();
-      var data = "tujuan="+pilih;
-      if(pilih.length > 0){
+      var data = "tujuan=" + pilih;
+      if (pilih.length > 0) {
         $.ajax({
           url: "pesan_ajax_pilih_tujuan.php",
-          method: "POST", 
-          data:data,
-          success: function(result){
+          method: "POST",
+          data: data,
+          success: function (result) {
             $(".tampil_tujuan").html(result);
-          }});
+          }
+        });
       }
 
     });
@@ -112,4 +113,5 @@
 </script>
 
 </body>
+
 </html>

@@ -15,12 +15,12 @@
 
   <section class="content">
     <div class="row">
-      <section class="col-lg-12">       
+      <section class="col-lg-12">
         <div class="box box-info">
 
           <div class="box-header">
             <h3 class="box-title">Tambah Produk</h3>
-            <a href="produk.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
+            <a href="produk.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a>
           </div>
           <div class="box-body">
 
@@ -37,13 +37,13 @@
                   <div class="col-lg-4">
                     <select name="kategori" required="required" class="form-control">
                       <option value="">- Pilih Kategori Produk -</option>
-                      <?php 
+                      <?php
                       include '../koneksi.php';
-                      $data = mysqli_query($koneksi,"SELECT * FROM kategori");
-                      while($d = mysqli_fetch_array($data)){
+                      $data = mysqli_query($koneksi, "SELECT * FROM kategori");
+                      while ($d = mysqli_fetch_array($data)) {
                         ?>
                         <option value="<?php echo $d['kategori_id']; ?>"><?php echo $d['kategori_nama']; ?></option>
-                        <?php 
+                      <?php
                       }
                       ?>
                     </select>
@@ -55,21 +55,24 @@
                 <label>Harga</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <input type="number" class="form-control" name="harga" required="required" placeholder="Masukkan Harga ..">
+                    <input type="number" class="form-control" name="harga" required="required"
+                      placeholder="Masukkan Harga ..">
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Katerangan</label>
-                <textarea name="keterangan" class="form-control textarea" required="required" style="resize: none" rows="10"></textarea>
+                <textarea name="keterangan" class="form-control textarea" required="required" style="resize: none"
+                  rows="10"></textarea>
               </div>
 
               <div class="form-group">
                 <label>Berat Produk (gram)</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <input type="number" class="form-control" name="berat" required="required" placeholder="Masukkan Berat ..">
+                    <input type="number" class="form-control" name="berat" required="required"
+                      placeholder="Masukkan Berat ..">
                   </div>
                 </div>
               </div>
@@ -78,7 +81,8 @@
                 <label>Jumlah Stock</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <input type="number" class="form-control" name="jumlah" required="required" placeholder="Masukkan Jumlah ..">
+                    <input type="number" class="form-control" name="jumlah" required="required"
+                      placeholder="Masukkan Jumlah ..">
                   </div>
                 </div>
               </div>

@@ -15,7 +15,7 @@
 
   <section class="content">
     <div class="row">
-      <section class="col-lg-6">       
+      <section class="col-lg-6">
         <div class="box box-info">
 
           <div class="box-header">
@@ -23,12 +23,13 @@
           </div>
           <div class="box-body">
             <p>Dengan menghapus, semua data transaksi customer juga akan ikut terhapus.</p>
-            <br/>
-            <a href="customer.php" class="btn btn-danger btn-sm"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
-            <?php 
+            <br />
+            <a href="customer.php" class="btn btn-danger btn-sm"><i class="fa fa-reply"></i> &nbsp Kembali</a>
+            <?php
             $idd = $_GET['id'];
             ?>
-            <a href="customer_hapus.php?id=<?php echo $idd; ?>" class="btn btn-success btn-sm pull-right"><i class="fa fa-check"></i> &nbsp Hapus</a> 
+            <a href="customer_hapus.php?id=<?php echo $idd; ?>" class="btn btn-success btn-sm pull-right"><i
+                class="fa fa-check"></i> &nbsp Hapus</a>
           </div>
 
         </div>

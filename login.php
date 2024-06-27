@@ -1,124 +1,105 @@
-<?php 
-if(isset($_GET['alert'])){
-  if($_GET['alert'] == "gagal"){
+<?php
+if (isset($_GET['alert'])) {
+  if ($_GET['alert'] == "gagal") {
     echo "<div class='alert alert-danger'>Login gagal! username dan password salah!</div>";
-  }else if($_GET['alert'] == "logout"){
+  } else if ($_GET['alert'] == "logout") {
     echo "<div class='alert alert-success'>Anda telah berhasil logout</div>";
-  }else if($_GET['alert'] == "belum_login"){
+  } else if ($_GET['alert'] == "belum_login") {
     echo "<div class='alert alert-warning'>Anda harus login untuk mengakses halaman admin</div>";
   }
 }
 ?>
 
 <!DOCTYPE html>
-<html
-  lang="en"
-  class="light-style customizer-hide"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="assets/"
-  data-template="vertical-menu-template-free"
->
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="assets/"
+  data-template="vertical-menu-template-free">
 
-    <title>Login Admin | Awan Indonesia</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <meta name="description" content="" />
+  <title>Login Admin | Awan Indonesia</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+  <meta name="description" content="" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="assets/css/demo.css" />
+  <!-- Icons. Uncomment required icon fonts -->
+  <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="assets/css/demo.css" />
 
-    <!-- Page CSS -->
-    <!-- Page -->
-    <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css" />
-    <!-- Helpers -->
-    <script src="assets/vendor/js/helpers.js"></script>
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="assets/js/config.js"></script>
-  </head>
+  <!-- Page CSS -->
+  <!-- Page -->
+  <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css" />
+  <!-- Helpers -->
+  <script src="assets/vendor/js/helpers.js"></script>
 
-  <body>
-    <!-- Content -->
+  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  <script src="assets/js/config.js"></script>
+</head>
 
-    <div class="container-xxl">
-      <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
-          <!-- Register -->
-          <div class="card">
-            <div class="card-body">
-              <!-- Logo -->
-              <div class="app-brand justify-content-center">
-                <a href="login.php" class="app-brand-link gap-2">
-                  <img src="assets/img/branding/logo.png" class="app-brand-logo w-px-50 h-auto" alt="logo" />
-                  <span class="app-brand-text demo text-body fw-bolder ms-2">Awan Indonesia</span>
-                </a>
-              </div>
-              <!-- /Logo -->
-              <h4 class="mb-2">Selamat Datang! 👋</h4>
-              <p class="mb-4">Silahkan masukkan username dan password anda</p>
+<body>
+  <!-- Content -->
 
-              <form id="formAuthentication" action="periksa_login.php" class="mb-3" method="post">
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input
-                    type="username"
-                    class="form-control"
-                    id="exampleInputUsername"
-                    name="username"
-                    placeholder="Masukan Username"
-                    autofocus
-                  />
-                </div>
-                <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Password</label>
-                  </div>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="exampleInputPassword"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                </div>
-                <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit" name="user">Login</button>
-                </div>
-              </form>
+  <div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <!-- Register -->
+        <div class="card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center">
+              <a href="login.php" class="app-brand-link gap-2">
+                <img src="assets/img/branding/logo.png" class="app-brand-logo w-px-50 h-auto" alt="logo" />
+                <span class="app-brand-text demo text-body fw-bolder ms-2">Awan Indonesia</span>
+              </a>
             </div>
+            <!-- /Logo -->
+            <h4 class="mb-2">Selamat Datang! 👋</h4>
+            <p class="mb-4">Silahkan masukkan username dan password anda</p>
+
+            <form id="formAuthentication" action="periksa_login.php" class="mb-3" method="post">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="username" class="form-control" id="exampleInputUsername" name="username"
+                  placeholder="Masukan Username" autofocus />
+              </div>
+              <div class="mb-3 form-password-toggle">
+                <div class="d-flex justify-content-between">
+                  <label class="form-label" for="password">Password</label>
+                </div>
+                <div class="input-group input-group-merge">
+                  <input type="password" id="exampleInputPassword" class="form-control" name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    aria-describedby="password" />
+                  <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                </div>
+              </div>
+              <div class="mb-3">
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-primary d-grid w-100" type="submit" name="user">Login</button>
+              </div>
+            </form>
           </div>
+        </div>
       </div>
     </div>
 
@@ -143,5 +124,6 @@ if(isset($_GET['alert'])){
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
+</body>
+
 </html>

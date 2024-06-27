@@ -1,5 +1,3 @@
-
-
 <!-- FOOTER -->
 <footer id="footer" class="section section-grey">
 	<!-- container -->
@@ -56,9 +54,10 @@
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<div class="footer">
 					<h3 class="footer-header">Stay Connected</h3>
-					
-					<p>Follow media sosial kami untuk lebih dekat dan mendapat informasi-informasi terbaru tentang toko kami.</p>
-					
+
+					<p>Follow media sosial kami untuk lebih dekat dan mendapat informasi-informasi terbaru tentang toko
+						kami.</p>
+
 					<!-- footer social -->
 					<ul class="footer-social">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -79,9 +78,10 @@
 			<div class="col-md-8 col-md-offset-2 text-center">
 				<!-- footer copyright -->
 				<div class="footer-copyright">
-					
-					Copyright Awan Indonesia &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-					
+
+					Copyright Awan Indonesia &copy;
+					<script>document.write(new Date().getFullYear());</script> All rights reserved
+
 				</div>
 				<!-- /footer copyright -->
 			</div>
@@ -104,24 +104,24 @@
 
 <script>
 
-	$(document).ready(function(){
+	$(document).ready(function () {
 
 		function numberWithCommas(x) {
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 
-		$('.jumlah').on("keyup",function(){
+		$('.jumlah').on("keyup", function () {
 			var nomor = $(this).attr('nomor');
 
 			var jumlah = $(this).val();
 
-			var harga = $("#harga_"+nomor).val();
+			var harga = $("#harga_" + nomor).val();
 
-			var total = jumlah*harga;
+			var total = jumlah * harga;
 
 			var t = numberWithCommas(total);
 
-			$("#total_"+nomor).text("Rp. "+t+" ,-");
+			$("#total_" + nomor).text("Rp. " + t + " ,-");
 		});
 	});
 
@@ -132,17 +132,17 @@
 
 
 
-	$(document).ready(function(){
-		$('#provinsi').change(function(){
+	$(document).ready(function () {
+		$('#provinsi').change(function () {
 			var prov = $('#provinsi').val();
 
 
 			var provinsi = $("#provinsi :selected").text();
 
 			$.ajax({
-				type : 'GET',
-				url : 'rajaongkir/cek_kabupaten.php',
-				data :  'prov_id=' + prov,
+				type: 'GET',
+				url: 'rajaongkir/cek_kabupaten.php',
+				data: 'prov_id=' + prov,
 				success: function (data) {
 					$("#kabupaten").html(data);
 					$("#provinsi2").val(provinsi);
@@ -150,7 +150,7 @@
 			});
 		});
 
-		$(document).on("change","#kabupaten",function(){
+		$(document).on("change", "#kabupaten", function () {
 
 			var asal = 152;
 			var kab = $('#kabupaten').val();
@@ -160,9 +160,9 @@
 			var kabupaten = $("#kabupaten :selected").text();
 
 			$.ajax({
-				type : 'POST',
-				url : 'rajaongkir/cek_ongkir.php',
-				data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+				type: 'POST',
+				url: 'rajaongkir/cek_ongkir.php',
+				data: { 'kab_id': kab, 'kurir': kurir, 'asal': asal, 'berat': berat },
 				success: function (data) {
 					$("#ongkir").html(data);
 					// alert(data);
@@ -178,7 +178,7 @@
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 
-		$(document).on("change", '.pilih-kurir', function(event) { 
+		$(document).on("change", '.pilih-kurir', function (event) {
 			// alert("new link clicked!");
 			var kurir = $(this).attr("kurir");
 			var service = $(this).attr("service");
@@ -189,29 +189,29 @@
 			$("#service").val(service);
 			$("#ongkir2").val(ongkir);
 			var total = parseInt(total_bayar) + parseInt(ongkir);
-			$("#tampil_ongkir").text("Rp. "+ format_angka(ongkir) +" ,-");
-			$("#tampil_total").text("Rp. "+ format_angka(total) +" ,-");
+			$("#tampil_ongkir").text("Rp. " + format_angka(ongkir) + " ,-");
+			$("#tampil_total").text("Rp. " + format_angka(total) + " ,-");
 		});
 
 
 		// $(".pilih-kurir").on("change",function(){
 
 		// 	alert('sd');
-			// var asal = 152;
-			// var kab = $('#kabupaten').val();
-			// var kurir = "a";
-			// var berat = $('#berat2').val();
+		// var asal = 152;
+		// var kab = $('#kabupaten').val();
+		// var kurir = "a";
+		// var berat = $('#berat2').val();
 
-			// $.ajax({
-			// 	type : 'POST',
-			// 	url : 'rajaongkir/cek_ongkir.php',
-			// 	data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
-			// 	success: function (data) {
-			// 		$("#ongkir").html(data);
-			// 		// alert(data);
+		// $.ajax({
+		// 	type : 'POST',
+		// 	url : 'rajaongkir/cek_ongkir.php',
+		// 	data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+		// 	success: function (data) {
+		// 		$("#ongkir").html(data);
+		// 		// alert(data);
 
-			// 	}
-			// });
+		// 	}
+		// });
 		// });
 
 

@@ -15,22 +15,22 @@
 <div class="section">
 	<div class="container">
 		<div class="row">
-			
-			<?php 
-			include 'customer_sidebar.php'; 
+
+			<?php
+			include 'customer_sidebar.php';
 			?>
 
 			<div id="main" class="col-md-9">
-				
+
 				<h4>GANTI PASSWORD</h4>
 
 				<div id="store">
 					<div class="row">
 
 						<div class="col-lg-12">
-							<?php 
-							if(isset($_GET['alert'])){
-								if($_GET['alert'] == "sukses"){
+							<?php
+							if (isset($_GET['alert'])) {
+								if ($_GET['alert'] == "sukses") {
 									echo "<div class='alert alert-success'>Password anda berhasil diganti!</div>";
 								}
 							}
@@ -39,7 +39,8 @@
 							<form action="customer_password_act.php" method="post">
 								<div class="form-group">
 									<label for="">Masukkan Password Baru</label>
-									<input type="password" class="input" required="required" name="password" placeholder="Masukkan password .." min="5">
+									<input type="password" class="input" required="required" name="password"
+										placeholder="Masukkan password .." min="5">
 								</div>
 
 								<div class="form-group">

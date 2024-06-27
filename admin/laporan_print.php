@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Laporan Penjualan</title>
 </head>
+
 <body>
 
   <style type="text/css">
-    body{
+    body {
       font-family: sans-serif;
     }
 
-    .table{
+    .table {
       width: 100%;
     }
 
-    th,td{
-    }
+    th,
+    td {}
+
     .table,
     .table th,
     .table td {
@@ -25,18 +28,18 @@
     }
   </style>
 
-    
+
   <center>
     <h2>Laporan Penjualan Toko Online Sepatu</h2>
   </center>
 
-  <?php 
+  <?php
   include '../koneksi.php';
-  if(isset($_GET['tanggal_sampai']) && isset($_GET['tanggal_dari'])){
+  if (isset($_GET['tanggal_sampai']) && isset($_GET['tanggal_dari'])) {
     $tgl_dari = $_GET['tanggal_dari'];
     $tgl_sampai = $_GET['tanggal_sampai'];
     ?>
-    <br/>
+    <br />
 
     <table class="">
       <tr>
@@ -51,7 +54,7 @@
       </tr>
     </table>
 
-    <br/>
+    <br />
 
     <table class="table table-bordered table-striped" id="table-datatable">
       <thead>
@@ -65,43 +68,43 @@
         </tr>
       </thead>
       <tbody>
-        <?php 
-        $no=1;
-        $data = mysqli_query($koneksi,"SELECT * FROM invoice,customer WHERE invoice_customer=customer_id and date(invoice_tanggal) >= '$tgl_dari' AND date(invoice_tanggal) <= '$tgl_sampai'");
-        while($i = mysqli_fetch_array($data)){
+        <?php
+        $no = 1;
+        $data = mysqli_query($koneksi, "SELECT * FROM invoice,customer WHERE invoice_customer=customer_id and date(invoice_tanggal) >= '$tgl_dari' AND date(invoice_tanggal) <= '$tgl_sampai'");
+        while ($i = mysqli_fetch_array($data)) {
           ?>
           <tr>
             <td><?php echo $no++ ?></td>
             <td>INVOICE-00<?php echo $i['invoice_id'] ?></td>
             <td><?php echo date('d-m-Y', strtotime($i['invoice_tanggal'])); ?></td>
             <td><?php echo $i['customer_nama'] ?></td>
-            <td><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-" ?></td>
+            <td><?php echo "Rp. " . number_format($i['invoice_total_bayar']) . " ,-" ?></td>
             <td>
-              <?php 
-              if($i['invoice_status'] == 0){
+              <?php
+              if ($i['invoice_status'] == 0) {
                 echo "Menunggu Pembayaran";
-              }elseif($i['invoice_status'] == 1){
+              } elseif ($i['invoice_status'] == 1) {
                 echo "Menunggu Konfirmasi";
-              }elseif($i['invoice_status'] == 2){
+              } elseif ($i['invoice_status'] == 2) {
                 echo "Ditolak";
-              }elseif($i['invoice_status'] == 3){
+              } elseif ($i['invoice_status'] == 3) {
                 echo "Dikonfirmasi & Sedang Diproses";
-              }elseif($i['invoice_status'] == 4){
+              } elseif ($i['invoice_status'] == 4) {
                 echo "Dikirim";
-              }elseif($i['invoice_status'] == 5){
+              } elseif ($i['invoice_status'] == 5) {
                 echo "Selesai";
               }
               ?>
             </td>
           </tr>
-          <?php 
+        <?php
         }
         ?>
       </tbody>
     </table>
 
-    <?php 
-  }else{
+  <?php
+  } else {
     ?>
 
     <div class="alert alert-info text-center">
@@ -116,4 +119,5 @@
 <script>
   window.print();
 </script>
+
 </html>

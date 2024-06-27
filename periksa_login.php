@@ -1,4 +1,4 @@
-<?php 
+<?php
 // menghubungkan dengan koneksi
 include 'koneksi.php';
 
@@ -9,7 +9,7 @@ $password = mysqli_real_escape_string($koneksi, md5($_POST['password']));
 $login = mysqli_query($koneksi, "SELECT * FROM admin WHERE admin_username='$username' AND admin_password='$password'");
 $cek = mysqli_num_rows($login);
 
-if($cek > 0){
+if ($cek > 0) {
 	session_start();
 	$data = mysqli_fetch_assoc($login);
 	$_SESSION['id'] = $data['admin_id'];
@@ -18,6 +18,6 @@ if($cek > 0){
 	$_SESSION['status'] = "login";
 
 	header("location:admin/");
-}else{
+} else {
 	header("location:login.php?alert=gagal");
 }

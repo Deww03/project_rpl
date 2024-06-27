@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<title>TOKO ONLINE SEPATU TERBAIK</title>
 
 	<!-- Google font -->
@@ -35,27 +35,27 @@ session_start();
 
 $file = basename($_SERVER['PHP_SELF']);
 
-if(!isset($_SESSION['customer_status'])){
+if (!isset($_SESSION['customer_status'])) {
 
 	// halaman yg dilindungi jika customer belum login
-	$lindungi = array('customer.php','customer_logout.php');
+	$lindungi = array('customer.php', 'customer_logout.php');
 
 	// periksa halaman, jika belum login ke halaman di atas, maka alihkan halaman
-	if(in_array($file, $lindungi)){
+	if (in_array($file, $lindungi)) {
 		header("location:index.php");
 	}
 
-	if($file == "checkout.php"){
+	if ($file == "checkout.php") {
 		header("location:masuk.php?alert=login-dulu");
 	}
 
-}else{
+} else {
 
 	// halaman yg tidak boleh diakses jika customer sudah login
-	$lindungi = array('masuk.php','daftar.php');
+	$lindungi = array('masuk.php', 'daftar.php');
 
 	// periksa halaman, jika sudah dan mengakses halaman di atas, maka alihkan halaman
-	if(in_array($file, $lindungi)){
+	if (in_array($file, $lindungi)) {
 		header("location:customer.php");
 	}
 
@@ -63,10 +63,10 @@ if(!isset($_SESSION['customer_status'])){
 
 
 
-if($file == "checkout.php"){
+if ($file == "checkout.php") {
 
 
-	if(!isset($_SESSION['keranjang']) || count($_SESSION['keranjang']) == 0){
+	if (!isset($_SESSION['keranjang']) || count($_SESSION['keranjang']) == 0) {
 
 		header("location:keranjang.php?alert=keranjang_kosong");
 
@@ -76,6 +76,7 @@ if($file == "checkout.php"){
 
 
 ?>
+
 <body>
 
 	<style>
@@ -85,7 +86,7 @@ if($file == "checkout.php"){
 	</style>
 	<!-- HEADER -->
 	<header>
-		
+
 		<!-- header -->
 		<div id="header">
 			<div class="container">
@@ -109,14 +110,14 @@ if($file == "checkout.php"){
 				</div>
 				<div class="pull-right">
 					<ul class="header-btns">
-						
+
 						<!-- Cart -->
 						<li class="header-cart dropdown default-dropdown">
 
-							<?php 
-							if(isset($_SESSION['keranjang'])){
+							<?php
+							if (isset($_SESSION['keranjang'])) {
 								$jumlah_isi_keranjang = count($_SESSION['keranjang']);
-							}else{
+							} else {
 								$jumlah_isi_keranjang = 0;
 							}
 							?>
@@ -128,34 +129,34 @@ if($file == "checkout.php"){
 								</div>
 								<strong class="text-uppercase">Keranjang Belanja :</strong>
 								<br>
-								<?php 
+								<?php
 								$total = 0;
-								if(isset($_SESSION['keranjang'])){
+								if (isset($_SESSION['keranjang'])) {
 									$jumlah_isi_keranjang = count($_SESSION['keranjang']);
-									for($a = 0; $a < $jumlah_isi_keranjang; $a++){
+									for ($a = 0; $a < $jumlah_isi_keranjang; $a++) {
 										$id_produk = $_SESSION['keranjang'][$a]['produk'];
-										$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
+										$isi = mysqli_query($koneksi, "select * from produk where produk_id='$id_produk'");
 										$i = mysqli_fetch_assoc($isi);
 										$total += $i['produk_harga'];
 									}
 								}
 								?>
-								<span><?php echo "Rp. ".number_format($total)." ,-"; ?></span>
+								<span><?php echo "Rp. " . number_format($total) . " ,-"; ?></span>
 							</a>
 							<div class="custom-menu">
 								<div id="shopping-cart">
 									<div class="shopping-cart-list">
-										<?php 
+										<?php
 										$total_berat = 0;
-										if(isset($_SESSION['keranjang'])){
+										if (isset($_SESSION['keranjang'])) {
 
 											$jumlah_isi_keranjang = count($_SESSION['keranjang']);
 
-											if($jumlah_isi_keranjang != 0){
+											if ($jumlah_isi_keranjang != 0) {
 												// cek apakah produk sudah ada dalam keranjang
-												for($a = 0; $a < $jumlah_isi_keranjang; $a++){
+												for ($a = 0; $a < $jumlah_isi_keranjang; $a++) {
 													$id_produk = $_SESSION['keranjang'][$a]['produk'];
-													$isi = mysqli_query($koneksi,"select * from produk where produk_id='$id_produk'");
+													$isi = mysqli_query($koneksi, "select * from produk where produk_id='$id_produk'");
 													$i = mysqli_fetch_assoc($isi);
 
 													$total_berat += $i['produk_berat'];
@@ -163,46 +164,52 @@ if($file == "checkout.php"){
 
 													<div class="product product-widget">
 														<div class="product-thumb">
-															<?php if($i['produk_foto1'] == ""){ ?>
+															<?php if ($i['produk_foto1'] == "") { ?>
 																<img src="gambar/sistem/produk.png">
-															<?php }else{ ?>
+															<?php } else { ?>
 																<img src="gambar/produk/<?php echo $i['produk_foto1'] ?>">
 															<?php } ?>
 														</div>
 														<div class="product-body">
-															<h3 class="product-price"><?php echo "Rp. ".number_format($i['produk_harga']) . " ,-"; ?></h3>
-															<h2 class="product-name"><a href="produk_detail.php?id=<?php echo $i['produk_id'] ?>"><?php echo $i['produk_nama'] ?></a></h2>
+															<h3 class="product-price">
+																<?php echo "Rp. " . number_format($i['produk_harga']) . " ,-"; ?></h3>
+															<h2 class="product-name"><a
+																	href="produk_detail.php?id=<?php echo $i['produk_id'] ?>"><?php echo $i['produk_nama'] ?></a>
+															</h2>
 														</div>
-														<a class="cancel-btn" href="keranjang_hapus.php?id=<?php echo $i['produk_id']; ?>&redirect=keranjang"><i class="fa fa-trash"></i></a>
+														<a class="cancel-btn"
+															href="keranjang_hapus.php?id=<?php echo $i['produk_id']; ?>&redirect=keranjang"><i
+																class="fa fa-trash"></i></a>
 													</div>
 
 													<?php
 
 												}
-											}else{
+											} else {
 												echo "<center>Keranjang Masih Kosong.</center>";
 											}
-											
 
-										}else{
+
+										} else {
 											echo "<center>Keranjang Masih Kosong.</center>";
 										}
 										?>
-										
+
 									</div>
 									<div class="shopping-cart-btns">
 										<a class="main-btn" href="keranjang.php">Keranjang</a>
-										<a class="primary-btn" href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+										<a class="primary-btn" href="checkout.php">Checkout <i
+												class="fa fa-arrow-circle-right"></i></a>
 									</div>
 								</div>
 							</div>
 						</li>
 						<!-- /Cart -->
 
-						<?php 
-						if(isset($_SESSION['customer_status'])){
+						<?php
+						if (isset($_SESSION['customer_status'])) {
 							$id_customer = $_SESSION['customer_id'];
-							$customer = mysqli_query($koneksi,"select * from customer where customer_id='$id_customer'");
+							$customer = mysqli_query($koneksi, "select * from customer where customer_id='$id_customer'");
 							$c = mysqli_fetch_assoc($customer);
 							?>
 							<!-- Account -->
@@ -211,7 +218,8 @@ if($file == "checkout.php"){
 									<div class="header-btns-icon">
 										<i class="fa fa-user-o"></i>
 									</div>
-									<strong class="text-uppercase"><?php echo $c['customer_nama']; ?> <i class="fa fa-caret-down"></i></strong>
+									<strong class="text-uppercase"><?php echo $c['customer_nama']; ?> <i
+											class="fa fa-caret-down"></i></strong>
 								</div>
 								<span><?php echo $c['customer_email']; ?></span>
 								<ul class="custom-menu">
@@ -223,11 +231,11 @@ if($file == "checkout.php"){
 							</li>
 							<!-- /Account -->
 							<?php
-						}else{
+						} else {
 							?>
 							<li class="header-account dropdown default-dropdown">
-								<a href="masuk.php" class="text-uppercase main-btn">Login</a> 
-								<a href="daftar.php" class="text-uppercase primary-btn">Daftar</a> 
+								<a href="masuk.php" class="text-uppercase main-btn">Login</a>
+								<a href="daftar.php" class="text-uppercase primary-btn">Daftar</a>
 							</li>
 							<?php
 						}
@@ -256,12 +264,14 @@ if($file == "checkout.php"){
 				<div class="category-nav show-on-click">
 					<span class="category-header">Kategori Produk <i class="fa fa-list"></i></span>
 					<ul class="category-list">
-						<?php 
-						$data = mysqli_query($koneksi,"SELECT * FROM kategori");
-						while($d = mysqli_fetch_array($data)){
+						<?php
+						$data = mysqli_query($koneksi, "SELECT * FROM kategori");
+						while ($d = mysqli_fetch_array($data)) {
 							?>
-							<li><a href="produk_kategori.php?id=<?php echo $d['kategori_id']; ?>"><?php echo $d['kategori_nama']; ?></a></li>
-							<?php 
+							<li><a
+									href="produk_kategori.php?id=<?php echo $d['kategori_id']; ?>"><?php echo $d['kategori_nama']; ?></a>
+							</li>
+						<?php
 						}
 						?>
 						<li style="background: #999;"><a href="index.php" style="color: white">Tampilkan Semua</a></li>
@@ -283,20 +293,3 @@ if($file == "checkout.php"){
 		<!-- /container -->
 	</div>
 	<!-- /NAVIGATION -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

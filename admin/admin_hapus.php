@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../koneksi.php';
 $id = $_GET['id'];
 $data = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
